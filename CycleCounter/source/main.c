@@ -39,9 +39,10 @@
 #include "clock_config.h"
 #include "MK22F51212.h"
 #include "fsl_debug_console.h"
-#include "blinky.h"
 /* TODO: insert other include files here. */
-
+#include "platform.h"
+#include "blinky.h"
+#include "cycles.h"
 /* TODO: insert other definitions and declarations here. */
 
 /*
@@ -59,6 +60,7 @@ int main(void) {
 #endif
 
     PRINTF("Hello World\n");
+    PL_Init();
 
     /* Force the counter to be placed into memory. */
     volatile static int i = 0 ;
@@ -68,6 +70,7 @@ int main(void) {
         /* 'Dummy' NOP to allow source level single stepping of
             tight while() loop */
         __asm volatile ("nop");
+        //Cycles_Test();
         BLINKY_Run();
         printf("Hello World\n");
     }
