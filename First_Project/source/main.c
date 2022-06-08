@@ -39,6 +39,7 @@
 #include "clock_config.h"
 #include "MK22F51212.h"
 #include "fsl_debug_console.h"
+#include "blinky.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
@@ -67,6 +68,7 @@ int main(void) {
         /* 'Dummy' NOP to allow source level single stepping of
             tight while() loop */
         __asm volatile ("nop");
+        BLINKY_Run();
         printf("Hello World\n");
     }
     return 0 ;
