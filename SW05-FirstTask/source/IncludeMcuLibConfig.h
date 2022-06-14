@@ -95,11 +95,11 @@ add_compile_options(-include "../config/IncludeMcuLibConfig.h")
   #define McuCriticalSection_CONFIG_USE_RTOS_CRITICAL_SECTION  (1) /* no native Extensa implementation yet */
 #endif
 /* ------------------- RTOS ---------------------------*/
-#define McuLib_CONFIG_SDK_USE_FREERTOS       (0)
-/* #define configUSE_SEGGER_SYSTEM_VIEWER_HOOKS (1) */
-/* #define configTOTAL_HEAP_SIZE                (24*1024) */
-/* #define configUSE_HEAP_SECTION_NAME          (1) */
-/* #define configHEAP_SECTION_NAME_STRING       ".bss.$SRAM_LOWER.FreeRTOS" */
+#define McuLib_CONFIG_SDK_USE_FREERTOS       (1)
+#define configUSE_SEGGER_SYSTEM_VIEWER_HOOKS (1)
+#define configTOTAL_HEAP_SIZE                (24*1024)
+#define configUSE_HEAP_SECTION_NAME          (1)
+#define configHEAP_SECTION_NAME_STRING       ".bss.$SRAM_LOWER.FreeRTOS"
 /* ------------------- FatFS ---------------------------*/
 #define McuLib_CONFIG_USE_FAT_FS             (0)
 
