@@ -10,13 +10,18 @@
 #include "McuWait.h"
 #include "buttons.h"
 #include "leds.h"
+#include "firstTask.h"
+#include "McuRTOS.h"
 
 void PL_Init(void) {
   BLINKY_Init(); /* initialize blinky */
   Cycles_Init(); /* initialize cylce counter */
   McuWait_Init(); /*Init MCU Wait*/
+  McuRTOS_Init();
   Button_Init();
   LEDS_Init();
+  FirstTaskInit();
+
 }
 
 void PL_Deinit(void) {

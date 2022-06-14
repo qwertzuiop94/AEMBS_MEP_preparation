@@ -12,23 +12,30 @@
 #include "McuRTOS.h"
 #include "leds.h"
 
-TaskHandle_t taskHndl;
+static TaskHandle_t taskHndl;
+static LEDS_Leds_e testLed = LEDS_GREEN;
 
 static void myFirstTask(void *pv) {
+	(void)pv;
+	TickType_t xLastWakeTime = xTaskGetTickCount();
+	for(;;){
+        LEDS_Neg(testLed);
+        vTaskDelayUntil(&xLastWakeTime, pdMS_TO_TICKS(200));
+	}
 
 }
 
 void FirstTaskInit(void) {
 	BaseType_t res;
 
-	xTaskCreate(
+	res = xTaskCreate(
 			myFirstTask, /* pointer to the task */
 			"FirstBlinkyTask", /* task name for kernel awareness debugging */
 			600 / sizeof(StackType_t), /* task stack size */
 			(void*) NULL, /* optional task startup argument */
 			tskIDLE_PRIORITY + 2, /* initial priority */
-			&taskHndl
-	); /* optional task handle to create */
+			&taskHndl /* optional task handle to create */
+	);
 
 	if (res != pdPASS) {
 		for (;;) {

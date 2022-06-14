@@ -47,7 +47,6 @@
 #include "buttons.h"
 #include "leds.h"
 /* TODO: insert other definitions and declarations here. */
-static LEDS_Leds_e testLed = LEDS_GREEN;
 /*
  * @brief   Application entry point.
  */
@@ -61,10 +60,8 @@ int main(void) {
     /* Init FSL debug console. */
     BOARD_InitDebugConsole();
 #endif
-
-    PRINTF("Hello World\n");
     PL_Init();
-
+    vTaskStartScheduler();
     /* Force the counter to be placed into memory. */
     volatile static int i = 0 ;
     /* Enter an infinite loop, just incrementing a counter. */
@@ -73,13 +70,6 @@ int main(void) {
         /* 'Dummy' NOP to allow source level single stepping of
             tight while() loop */
         __asm volatile ("nop");
-        //Cycles_Test();
-        if(ButtonState()){
-            printf("Button gedrückt\n");
-            LEDS_On(testLed);
-        }else{
-        	LEDS_Off(testLed);
-        }
     }
     return 0 ;
 }

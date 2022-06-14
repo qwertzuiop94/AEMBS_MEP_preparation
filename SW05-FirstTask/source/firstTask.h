@@ -9,5 +9,8 @@
 #define FIRSTTASK_H_
 
 
+void FirstTaskInit(void);
+void FirstTaskDeInit(void);
+
 
 #endif /* FIRSTTASK_H_ */
