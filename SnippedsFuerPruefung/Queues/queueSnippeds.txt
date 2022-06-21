@@ -1,0 +1,46 @@
+/* -------------- message queue ----------------------*/
+typedef Invader_event_e event_e;
+static QueueHandle_t eventQueue; /* queue handle */
+#define EVENT_QUEUE_LENGTH    (5) /* number of elements in queue */
+#define EVENT_QUEUE_ELEM_SIZE (sizeof(event_e)) /* size of a queue item */
+
+
+/* -------------- Funktionen zum Arbeitten ----------------*/
+
+void Invader_SendEvent(Invader_event_e event) {
+  if (xQueueSendToBack(eventQueue, &event, pdMS_TO_TICKS(20))!=pdPASS) {
+    /* failed to send event after 20 ms? */
+  }
+}
+
+static Invader_event_e Invader_ReceiveEvent(void) {
+  Invader_event_e event;
+
+  if (xQueueReceive(eventQueue, &event, portMAX_DELAY)!=pdPASS) {
+    /* failed to receive event after timeout? */
+    event = Invader_Event_None;
+  }
+  return event;
+
+
+
+/* ------------------ Init ---------------------------*/
+// in init Task verwenden!
+
+  eventQueue = xQueueCreate(EVENT_QUEUE_LENGTH, EVENT_QUEUE_ELEM_SIZE);
+  if (eventQueue==NULL) {
+    for(;;){} /* out of memory? */
+  }
+
+
+
+// so auslesen in while loop:
+
+/*
+ Invader_event_e event;
+
+  for(;;) {
+    event = Invader_ReceiveEvent();
+    if (event!=Invader_Event_None) {
+
+3/
