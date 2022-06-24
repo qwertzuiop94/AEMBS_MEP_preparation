@@ -1,0 +1,29 @@
+
+/********************** ------ snipppeds um zu programm herzustellen und auf Raspi zu laden **********************/
+
+// makefile in der Kommandozeile ausführen:
+arm-linux-gnueabihf-g++ -ggdb helloworld.c -0 helloword
+//datei schicken per scp
+scp helloworld pi@eee-01857:/home/pi/
+// ausführrechte auf linux hinzufügen
+chmod +x helloworld
+// programm unter linux starte
+./helloworld
+
+
+
+/********************** ------ snipppeds um zu debuggen **********************/
+//auf Raspi Seite
+gdbserver :1234 helloworld
+
+
+//auf pc seite
+arm-linux-gnueabihf-gdb helloworld
+target remote eee-01857.simple.eee.intern:1234 //oder zuhause target remote eee-01857:1234
+file helloworld
+b main // setzt breakpoint auf main
+c 		//für Programm weiter fahren zu lassen
+
+//auf Raspi muss man den Task evtl. killen:
+ps -a
+kill -9 +ProzessID
