@@ -1,0 +1,4 @@
+/********************** ------ snipppeds um zu debuggen **********************/
+make //ruft make all auf
+make clean // löscht helloworld
+make -f makefile all
