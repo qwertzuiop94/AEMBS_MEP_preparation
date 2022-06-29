@@ -1,0 +1,16 @@
+//Handler
+static SemaphoreHandle_t xsemaphore;
+
+//init
+xsemaphore = xSemaphoreCreateBinary();
+vQueueAddToRegistry(xsemaphore, "LED_Semaphore"); // Anmelden für die Registry
+if(xsemaphore == NULL){
+	for(;;){
+		//error!
+	}
+
+// Token geben
+xSemaphoreGive(xsemaphore);
+// Token nehmen
+xSemaphoreTake(xsemaphore,portMAX_DELAY); // muss nicht noch gelöscht werden!
+

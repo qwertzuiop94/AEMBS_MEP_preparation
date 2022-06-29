@@ -1,0 +1,9 @@
+//Crtitical Section in ISR
+UBaseType_t x = taskENTER_CRITICAL_FROM_ISR();
+//do some stuff
+taskEXIT_CRITICAL_FROM_ISR(x);
+
+//Critical Section in TASK
+taskENTER_CRITICAL();
+//do some stuff
+taskEXIT_CRITICAL();

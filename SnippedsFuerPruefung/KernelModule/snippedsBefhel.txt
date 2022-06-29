@@ -1,0 +1,12 @@
+//Modul erstellen
+make
+// Modul laden
+sudo insmod "kernelmodul.ko" "parameter"="paramterWert"
+// Modul entladen
+sudo rmmod "kernelmodul.ko"
+// Kernel Meldungen anschauen
+dmesg | tail
+// geladene Module auflisten
+lsmod
+// scharfe Interrupts anzeigen lassen
+sudo cat /proc/interrupts
